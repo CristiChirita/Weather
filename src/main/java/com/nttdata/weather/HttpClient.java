@@ -11,9 +11,9 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class HttpClient {
-    public String resolveRequest(String apiKey){
+    public String resolveRequest(String apiKey, String data){
         CloseableHttpClient httpClient = HttpClients.createDefault();
-        HttpGet httpget = new HttpGet("http://dataservice.accuweather.com/currentconditions/v1/topcities/150.json?apikey=" + apiKey);
+        HttpGet httpget = new HttpGet("http://dataservice.accuweather.com/" + data + "/v1/topcities/150.json?apikey=" + apiKey + "&details=true");
         CloseableHttpResponse response;
         try {
             response = httpClient.execute(httpget);
@@ -30,4 +30,5 @@ public class HttpClient {
         }
         return null;
     }
+
 }
